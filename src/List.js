@@ -17,6 +17,8 @@ const List = () => {
     setPeople([]);
   };
 
+  
+
   //Function that counts how old is the person
   function howOld(peronAge) {
     let today = new Date(); //todays date
@@ -123,8 +125,6 @@ const List = () => {
     );
   };
 
-
-  
   return (
     <>
       {people.map((person) => {
