@@ -163,6 +163,7 @@ const List = () => {
                 type="date"
                 min="1920-01-01"
                 max="2022-12-05"
+                required
                 placeholder="name"
                 value={birthday}
                 onChange={(e) => setBirthday(e.target.value)}
