@@ -217,3 +217,17 @@ main {
 
   transform: translateX(10px);
 }
+#modalBtn {
+  width: 3rem;
+  margin-left: 15px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #f28ab2;
+  height: 3em;
+  border: 0;
+  transition: transform 0.7s ease-in-out;
+}
+
+#modalBtn:hover {
+  transform: rotate(360deg);
+}

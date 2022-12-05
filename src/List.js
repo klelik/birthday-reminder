@@ -1,12 +1,14 @@
 import React from "react";
 import data from "./data";
 import { useState } from "react";
+import { BsFillPlusCircleFill } from "react-icons/bs";
 
 const List = () => {
   const [people, setPeople] = useState(data);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState(" ");
   const [birthday, setBirthday] = useState(" ");
+  const [phone, setPhone] = useState(+447542557637);
   const [image, setImage] = useState(
     "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-3_rxtqvi.jpg"
   );
@@ -48,6 +50,17 @@ const List = () => {
 
   //todays birthdays function
   function todayBirthday(person) {
+
+    function createUrl(person) {
+      let num = phone;
+      var url1= "sms:";
+      url1 += num;
+      url1 += "?&body=Happy birthday ";
+      url1 += name; 
+      url1 += "! I can’t wait to see your beautiful smile light up the room for years to come."
+      return url1;    //sends text to the last person created from setName
+    }
+
     const oneDay = 1000 * 60 * 60 * 24; //one day in ms
 
     let today = new Date(); //todays date
@@ -83,12 +96,14 @@ const List = () => {
               🥳
             </span>
           </h4>
-          <button id="sendBtn">
-            Send a Wish{" "}
-            <span role="img" aria-label="emoji">
-              🥳
-            </span>
-          </button>
+          <a href={createUrl()}>
+            <button id="sendBtn">
+              Send a Wish{" "}
+              <span role="img" aria-label="emoji">
+                🥳
+              </span>
+            </button>
+          </a>
         </div>
       );
     } else {
@@ -96,55 +111,58 @@ const List = () => {
     }
   }
 
-  const addPerson = () => {
-    let newId = 33;
-    const newArray = {
-      id: newId,
-      name: "klement Lika",
-      age: 29,
-      birthday: "1998-12-23",
-      image:
-        "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
-    };
-    setPeople((people) => [...people, newArray]); //HOW TO ADD NEW OBJECT WITH SETSTATE
-  };
+  // const addPerson = () => {
+  //   let newId = 33;
+  //   const newArray = {
+  //     id: newId,
+  //     name: "klement Lika",
+  //     age: 29,
+  //     birthday: "1998-12-23",
+  //     image:
+  //       "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
+  //   };
+  //   setPeople((people) => [...people, newArray]); //HOW TO ADD NEW OBJECT WITH SETSTATE
+  // };
 
   const submiPerson = () => {
     const newPerson = {
       id: idTrack + 1,
       name,
       birthday,
+      phone,
       image,
     };
     setPeople((people) => [...people, newPerson]); //HOW TO ADD NEW OBJECT WITH SETSTATE
     console.log(people);
   };
-  const createModal = (modal) => {
+  const createModal = () => {
     return (
       <div className={`modal ${isModalOpen && "is-active"}`}>
         <div className="modal-background"></div>
         <div className="modal-content flex-auto is-align-content-center is-justify-content-center">
           <h2 className="has-text-white">Add a new person</h2>
           <div className="field">
-            <label className="label">Name</label>
+            <label className="label has-text-white ">Name</label>
             <div className="control">
               <input
                 id="namePicker"
                 className="input"
                 type="text"
-                placeholder="name"
+                placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></input>
             </div>
           </div>
           <div className="field">
-            <label className="label">Birthday</label>
+            <label className="label has-text-white">Birthday</label>
             <div className="control">
               <input
                 id="datePicker"
                 className="input"
-                type="text"
+                type="date"
+                min="1920-01-01"
+                max="2022-12-05"
                 placeholder="name"
                 value={birthday}
                 onChange={(e) => setBirthday(e.target.value)}
@@ -152,7 +170,20 @@ const List = () => {
             </div>
           </div>
           <div className="field">
-            <label className="label">Image</label>
+            <label className="label has-text-white">Phone</label>
+            <div className="control">
+              <input
+                id="phonePicker"
+                className="input"
+                type="tel"
+                placeholder="Phone number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              ></input>
+            </div>
+          </div>
+          <div className="field">
+            <label className="label has-text-white">Image URL</label>
             <div className="control">
               <input
                 id="imgPicker"
@@ -175,7 +206,7 @@ const List = () => {
           </div>
         </div>
         <button
-          onClick={() => setIsModalOpen(modal)}
+          onClick={() => setIsModalOpen(false)}
           class="modal-close is-large"
           aria-label="close"
         ></button>
@@ -185,13 +216,11 @@ const List = () => {
 
   return (
     <>
-      <button
+      <BsFillPlusCircleFill
         onClick={setIsModalOpen}
         id="modalBtn"
         className=" button  is-small is-outlined"
-      >
-        +
-      </button>
+      />
       {people.map((person) => {
         const { id, name, age, image, birthday } = person;
         return (
@@ -209,13 +238,8 @@ const List = () => {
         );
       })}
       <button onClick={() => clearAll([])}>clear all</button>
-      <button
-        style={{ backgroundColor: "#AFEEEE" }}
-        onClick={() => addPerson()}
-      >
-        Say Happy birthday to everyone
-      </button>
-      <button onClick={() => setIsModalOpen(isModalOpen)}>open modal</button>
+
+      <button  style={{ backgroundColor: "#AFEEEE" }} onClick={() => setIsModalOpen(true)}>open modal</button>
       <div>{createModal()}</div>
     </>
   );
