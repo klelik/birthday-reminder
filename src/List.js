@@ -10,7 +10,7 @@ const List = () => {
   const [birthday, setBirthday] = useState(" ");
   const [phone, setPhone] = useState(+447542557637);
   const [image, setImage] = useState(
-    "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-3_rxtqvi.jpg"
+    "https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM="
   );
 
   let idTrack = people.length;
@@ -50,15 +50,15 @@ const List = () => {
 
   //todays birthdays function
   function todayBirthday(person) {
-
     function createUrl(person) {
       let num = phone;
-      var url1= "sms:";
+      var url1 = "sms:";
       url1 += num;
       url1 += "?&body=Happy birthday ";
-      url1 += name; 
-      url1 += "! I can’t wait to see your beautiful smile light up the room for years to come."
-      return url1;    //sends text to the last person created from setName
+      url1 += name;
+      url1 +=
+        "! I can’t wait to see your beautiful smile light up the room for years to come.";
+      return url1; //sends text to the last person created from setName
     }
 
     const oneDay = 1000 * 60 * 60 * 24; //one day in ms
@@ -239,7 +239,12 @@ const List = () => {
       })}
       <button onClick={() => clearAll([])}>clear all</button>
 
-      <button  style={{ backgroundColor: "#AFEEEE" }} onClick={() => setIsModalOpen(true)}>open modal</button>
+      <button
+        style={{ backgroundColor: "#AFEEEE" }}
+        onClick={() => setIsModalOpen(true)}
+      >
+        open modal
+      </button>
       <div>{createModal()}</div>
     </>
   );
