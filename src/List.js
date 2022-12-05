@@ -5,6 +5,13 @@ import { useState } from "react";
 const List = () => {
   const [people, setPeople] = useState(data);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [name, setName] = useState(" ");
+  const [birthday, setBirthday] = useState(" ");
+  const [image, setImage] = useState(
+    "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-3_rxtqvi.jpg"
+  );
+
+  let idTrack = people.length;
   // console.log(people);
 
   const deletePerson = (id) => {
@@ -16,8 +23,6 @@ const List = () => {
   const clearAll = () => {
     setPeople([]);
   };
-
-  
 
   //Function that counts how old is the person
   function howOld(peronAge) {
@@ -72,12 +77,12 @@ const List = () => {
     if (currentDay === day && currentMonth === month) {
       return (
         <div style={{ display: "", alignItems: "center" }}>
-          <pre style={{ fontWeight: "bold" }}>
+          <h4 style={{ fontWeight: "bold" }}>
             {person.name} {howOld(person.birthday) + 1}th birthday{" "}
             <span role="img" aria-label="emoji">
               🥳
             </span>
-          </pre>
+          </h4>
           <button id="sendBtn">
             Send a Wish{" "}
             <span role="img" aria-label="emoji">
@@ -97,36 +102,96 @@ const List = () => {
       id: newId,
       name: "klement Lika",
       age: 29,
-      birthday: "1998-11-3",
+      birthday: "1998-12-23",
       image:
         "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
     };
     setPeople((people) => [...people, newArray]); //HOW TO ADD NEW OBJECT WITH SETSTATE
   };
 
-  const createModal = () => {
+  const submiPerson = () => {
+    const newPerson = {
+      id: idTrack + 1,
+      name,
+      birthday,
+      image,
+    };
+    setPeople((people) => [...people, newPerson]); //HOW TO ADD NEW OBJECT WITH SETSTATE
+    console.log(people);
+  };
+  const createModal = (modal) => {
     return (
       <div className={`modal ${isModalOpen && "is-active"}`}>
         <div className="modal-background"></div>
-        <div className="modal-content">
+        <div className="modal-content flex-auto is-align-content-center is-justify-content-center">
+          <h2 className="has-text-white">Add a new person</h2>
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
               <input
+                id="namePicker"
                 className="input"
                 type="text"
-                placeholder="Text input"
+                placeholder="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               ></input>
             </div>
           </div>
+          <div className="field">
+            <label className="label">Birthday</label>
+            <div className="control">
+              <input
+                id="datePicker"
+                className="input"
+                type="text"
+                placeholder="name"
+                value={birthday}
+                onChange={(e) => setBirthday(e.target.value)}
+              ></input>
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Image</label>
+            <div className="control">
+              <input
+                id="imgPicker"
+                className="input"
+                type="text"
+                placeholder="name"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              ></input>
+            </div>
+          </div>
+          <div className="control">
+            <button
+              onClick={() => submiPerson()}
+              id="submit"
+              className="button is-primary"
+            >
+              Submit
+            </button>
+          </div>
         </div>
-        <button class="modal-close is-large" aria-label="close"></button>
+        <button
+          onClick={() => setIsModalOpen(modal)}
+          class="modal-close is-large"
+          aria-label="close"
+        ></button>
       </div>
     );
   };
 
   return (
     <>
+      <button
+        onClick={setIsModalOpen}
+        id="modalBtn"
+        className=" button  is-small is-outlined"
+      >
+        +
+      </button>
       {people.map((person) => {
         const { id, name, age, image, birthday } = person;
         return (
@@ -150,7 +215,7 @@ const List = () => {
       >
         Say Happy birthday to everyone
       </button>
-      <button onClick={setIsModalOpen}>open modal</button>
+      <button onClick={() => setIsModalOpen(isModalOpen)}>open modal</button>
       <div>{createModal()}</div>
     </>
   );
