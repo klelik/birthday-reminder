@@ -7,7 +7,7 @@ const List = () => {
   const [people, setPeople] = useState(data);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [name, setName] = useState(" ");
-  const [birthday, setBirthday] = useState(" ");
+  const [birthday, setBirthday] = useState("2022-12-06");
   const [phone, setPhone] = useState(+447542557637);
   const [image, setImage] = useState(
     "https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM="
@@ -198,7 +198,7 @@ const List = () => {
           </div>
           <div className="control">
             <button
-              onClick={() => submiPerson()}
+              onClick={() => subAndClose()}
               id="submit"
               className="button is-primary"
             >
@@ -213,6 +213,15 @@ const List = () => {
         ></button>
       </div>
     );
+
+    function dateRequired() {
+      document.getElementById("datePicker").required = true;
+    }
+
+    function subAndClose() {
+      submiPerson();
+      setIsModalOpen(false);
+    }
   };
 
   return (
