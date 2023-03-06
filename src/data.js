@@ -5,7 +5,7 @@ export default [
     birthday: "1998-12-5",
     phone: +447542557637,
     image:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-2_ipcjws.jpg",
+      "https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM=",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ export default [
     birthday: "1998-12-25",
     phone: +447542557637,
     image:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1595959131/person-3_rxtqvi.jpg",
+      "https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM=",
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ export default [
     birthday: "1997-11-23",
     phone: +447542557637,
     image:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883423/person-4_t9nxjt.jpg",
+      "https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM=",
   },
   {
     id: 4,
@@ -29,14 +29,6 @@ export default [
     birthday: "1996-11-23",
     phone: +447542557637,
     image:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883417/person-3_ipa0mj.jpg",
-  },
-  {
-    id: 5,
-    name: "Lola Gardner",
-    birthday: "1995-11-23",
-    phone: +447542557637,
-    image:
-      "https://res.cloudinary.com/diqqf3eq2/image/upload/v1586883334/person-1_rfzshl.jpg",
+      "https://media.istockphoto.com/id/522855255/vector/male-profile-flat-blue-simple-icon-with-long-shadow.jpg?s=612x612&w=0&k=20&c=EQa9pV1fZEGfGCW_aEK5X_Gyob8YuRcOYCYZeuBzztM=",
   },
 ];
